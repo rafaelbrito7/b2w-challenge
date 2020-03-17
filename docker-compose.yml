@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  backend:
+    build: api
+    ports:
+      - 8000:8000
+    depends_on:
+      - mongo
+    networks:
+      - "net"
+
+  mongo:
+    image: mongo:4.2-bionic
+    ports:
+      - 27017:27017
+    expose:
+      - "27017"
+    networks:
+      - "net"
+
+networks:
+  net:
+    driver: bridge
+    
