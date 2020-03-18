@@ -9,7 +9,7 @@ import (
 )
 
 func ConnectDB() *mongo.Collection {
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	clientOptions := options.Client().ApplyURI("mongodb://mongo:27017")
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
