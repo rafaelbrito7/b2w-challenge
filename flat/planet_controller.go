@@ -26,7 +26,7 @@ func GetSwapiPlanet(name string) (*http.Response, error)  {
 	return rs, err
 }
 
-func GetPlanets(w http.ResponseWriter, r *http.Request) {
+func GetTotalPlanets(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 
@@ -67,12 +67,21 @@ func GetPlanetById(w http.ResponseWriter, r *http.Request) {
 
 func GetPlanetByName(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
-	params := mux.Vars(r)
-	var planet Planet
-	planet.Name = params["name"]
-	filter := bson.M{"name": planet.Name}
-	result := ConnectDB().FindOne(context.TODO(), filter)
-	respondWithJson(w, http.StatusOK, result)
+	names, ok := r.URL.Query()["name"]
+
+	if !ok || len(names[0]) < 1 {
+		respondWithError(w, http.StatusBadRequest, "Missing Query String param!")
+		return
+	}
+	name := names[0]
+	filter := bson.M{"name": name}
+	planet, err := Show(filter)
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, "Planet not found!")
+		return
+	}
+	respondWithJson(w, http.StatusOK, planet)
+
 }
 
 func DeletePlanet(w http.ResponseWriter, r *http.Request) {
