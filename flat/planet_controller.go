@@ -141,6 +141,7 @@ func CreatePlanet(w http.ResponseWriter, r *http.Request) {
 
 	if checkPlanetExists.Name == planet.Name {
 		respondWithJson(w, http.StatusOK, "Planet already exist")
+		return
 	}
 
 	planet.FilmsApparitionsCount = len(swapiresponse.Results[0].Films)
