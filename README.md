@@ -55,8 +55,6 @@ This command will initiate the environment and the application is listening to t
     
 ### :computer: Technologies
 
-This project was developed in order to become a Junior Software Engineer at B2W with the following technologies:
-
 -  [Docker](https://www.docker.com/)
 -  [Golang](https://golang.org/)
 -  [Goland IDE](https://www.jetbrains.com/go/)
