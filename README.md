@@ -60,6 +60,3 @@ This command will initiate the environment and the application is listening to t
 -  [Goland IDE](https://www.jetbrains.com/go/)
 -  [Gorilla Mux](https://github.com/gorilla/mux)
 -  [Mongo GO Driver](https://github.com/mongodb/mongo-go-driver)
-
-### :memo: License
-This project is under the MIT license.
