@@ -14,7 +14,7 @@ import (
 )
 
 //TODO create GetPlanetsByName POST method
-//TODO check every single method's validation process
+//TODO check every single method
 //TODO finish as soon as possible so I can start unit tests
 
 func GetSwapiPlanet(name string) (*http.Response, error)  {
@@ -104,7 +104,7 @@ func DeletePlanet(w http.ResponseWriter, r *http.Request) {
 
 func CreatePlanet(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+
 
 	var planet Planet
 	var swapiresponse SWAPIresponse
@@ -132,9 +132,19 @@ func CreatePlanet(w http.ResponseWriter, r *http.Request) {
 		respondWithJson(w, http.StatusBadRequest, "Planet does not exist")
 		return
 	}
+	name := planet.Name
+	filter := bson.M{"name": name}
+	checkPlanetExists, err := Show(filter)
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, err.Error())
+	}
+
+	if checkPlanetExists.Name == planet.Name {
+		respondWithJson(w, http.StatusOK, "Planet already exist")
+	}
 
 	planet.FilmsApparitionsCount = len(swapiresponse.Results[0].Films)
-	result, err  := ConnectDB().InsertOne(ctx, planet)
+	result, err  := Store(planet)
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, err.Error())
 	}
