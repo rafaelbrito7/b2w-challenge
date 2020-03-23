@@ -21,13 +21,13 @@ func (p *Planet) validate() url.Values{
 	errs := url.Values{}
 
 	if p.Name == "" {
-		errs.Add("Request Body", "Error: Missing planet's name")
+		errs.Add("requestBody", "Error: Missing planet's name")
 	}
 	if p.Climate == "" {
-		errs.Add("Request Body", "Error: Missing planet's climate")
+		errs.Add("requestBody", "Error: Missing planet's climate")
 	}
 	if p.Terrain == "" {
-		errs.Add("Request Body", "Error: Missing planet's terrain")
+		errs.Add("requestBody", "Error: Missing planet's terrain")
 	}
 	return errs
 }
