@@ -6,6 +6,14 @@
   Junior Software Engineer Challenge
 </h2>
 
+### :computer: Technologies
+
+-  [Docker](https://www.docker.com/)
+-  [Golang](https://golang.org/)
+-  [Goland IDE](https://www.jetbrains.com/go/)
+-  [Gorilla Mux](https://github.com/gorilla/mux)
+-  [Mongo GO Driver](https://github.com/mongodb/mongo-go-driver)
+
 ### :closed_book: How to run the project
 
 #### Step 1: Clone the repository
@@ -52,11 +60,3 @@ This command will initiate the environment and the application is listening to t
     ```
     localhost:8000/api/planets/5e78dec985472b7cf50fc1b2
     ```
-    
-### :computer: Technologies
-
--  [Docker](https://www.docker.com/)
--  [Golang](https://golang.org/)
--  [Goland IDE](https://www.jetbrains.com/go/)
--  [Gorilla Mux](https://github.com/gorilla/mux)
--  [Mongo GO Driver](https://github.com/mongodb/mongo-go-driver)
